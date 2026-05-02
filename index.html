@@ -7,7 +7,18 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
+    <nav class="side-scroll-nav">
+        <div class="scroll-wheel" id="scrollWheel">
+            <div class="wheel-circle"></div>
+            <ul class="wheel-labels">
+                <li class="wheel-label" data-target="home" data-angle="60">HOME</li>
+                <li class="wheel-label" data-target="about" data-angle="30">ABOUT</li>
+                <li class="wheel-label" data-target="skills" data-angle="0">SKILLS</li>
+                <li class="wheel-label" data-target="projects" data-angle="-30">PROJECTS</li>
+                <li class="wheel-label" data-target="contact" data-angle="-60">CONTACT</li>
+            </ul>
+        </div>
+    </nav>
     <header class="navbar">
         <nav>
             <ul class="nav-links">
@@ -32,11 +43,13 @@
             </div>
         </section>
             
-        <section id="about" class="about-section container">
-            <div class="about-image">
+       <section id="about" class="about-section container">
+                 <!-- Add 'hidden-scroll' here -->
+            <div class="about-image hidden-scroll">
                 <img src="./assets/images/diplomaaboutme.png" alt="Academic Achievements">
             </div>
-            <div class="about-content">
+            <!-- Add 'hidden-scroll' here too -->
+            <div class="about-content hidden-scroll">
                 <h2>ABOUT <span>ME</span></h2>
                 <p>I am a Computer Engineering Technology student with a strong passion for blending technical architecture with creative visual design. I specialize in bridging the gap between hardware systems, network configurations, and engaging digital experiences.</p>
                 <p>Whether I am crafting intuitive user interfaces, developing interactive web applications, or configuring network protocols, I enjoy turning complex problems into elegant, user-friendly solutions.</p>
@@ -91,18 +104,26 @@
 
         <section id="projects" class="projects-section container">
             <h2>P R O <span>J E C T</span></h2>
-            <article class="project-item full-width">
-                <div class="gallery-carousel">
-                    <img src="./assets/images/flowers.png" alt="Film Still 1">
-                    <img src="./assets/images/rizal.png" alt="Film Still 2">
-                    <img src="./assets/images/medyoshortfilm.png" alt="Film Still 3">
-                    <img src="./assets/images/plates.png" alt="Film Still 4">
-                    <img src="./assets/images/harana.png" alt="Film Still 5">
-                </div>
-                <h3>SAMPLE PROJECTS </h3>
-                <p>Click left and right side</p>
-            </article>
+                <article class="project-item full-width">
+                    <div class="gallery-carousel">
+                        <!-- New Previous Button -->
+                        <button class="carousel-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
 
+                        <!-- Your existing images -->
+                        <img src="./assets/images/flowers.png" alt="Film Still 1">
+                        <img src="./assets/images/rizal.png" alt="Film Still 2">
+                        <img src="./assets/images/medyoshortfilm.png" alt="Film Still 3">
+                        <img src="./assets/images/plates.png" alt="Film Still 4">
+                        <img src="./assets/images/harana.png" alt="Film Still 5">
+
+                        <!-- New Next Button -->
+                        <button class="carousel-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    
+                    <!-- Your existing text elements -->
+                    <h3>MEDYO SHORT FILM</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                </article>
             <div class="clothing-designs">
                 <article class="project-item flex-row">
                     <img src="./assets/images/cetejersey.png" alt="CETE Jersey">
@@ -125,20 +146,37 @@
                     <div class="project-yunky">
                         <h3>Y U N K Y<span class="yunky-blue"> S H I R T</span></h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magni sequi numquam vero non incididunt tempora aute neque cillum mollit sunt cupidatat aperiam sint incididunt eiusmod</p>
+                    </div>
                 </article>
             </div>
 
-            <div class="poster-grid">
-                <div>
+           <div class="poster-grid">
+                <div class="poster-card">
                     <img src="./assets/images/avengersendgame.png" alt="Avengers Style Poster">
-                    <h1>AVENGERS ENDGAME</h1>
-                    <p>Avengers Endgame</p>
+                    <div class="poster-info">
+                        <h3>AVENGERS ENDGAME</h3>
+                        <p>A cinematic fan-made poster design inspired by the epic conclusion of the Infinity Saga, featuring complex character composition and dramatic lighting.</p>
+                    </div>
                 </div>
-                <img src="./assets/images/house.png" alt="House Poster">
-                <img src="./assets/images/consumatumest.png" alt="Contagium Poster">
+
+                <div class="poster-card">
+                    <img src="./assets/images/house.png" alt="House Poster">
+                    <div class="poster-info">
+                        <h3>HOUSE</h3>
+                        <p>A haunting and atmospheric poster concept exploring architectural geometry, shadow play, and eerie tension in a modern setting.</p>
+                    </div>
+                </div>
+
+                <div class="poster-card">
+                    <img src="./assets/images/consumatumest.png" alt="Contagium Poster">
+                    <div class="poster-info">
+                        <h3>CONTAGIUM</h3>
+                        <p>A visually striking thriller poster combining grunge textures with bold typography to convey a sense of impending outbreak and suspense.</p>
+                    </div>
+                </div>
             </div>
 
-            <h3 class="section-subtitle">P h o t o g r a p h y</h3>
+            <h3 class="section-subtitle">P h o t o <span>g r a p h y</span></h3>
             <div class="photography-grid">
                 <img src="./assets/images/russel.png" alt="Photography 1">
                 <img src="./assets/images/boomie.png" alt="Photography 2">
@@ -150,137 +188,53 @@
         </section>
 
         <section id="contact" class="contact-section container">
-            <div class="social-media">
-                <h2>SOCIAL MEDIA</h2>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Twitter/X</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Behance</a></li>
-                </ul>
-            </div>
-            
-            <div class="contact-form-container">
-                <h2>Contact me</h2>
-                <form action="#" method="POST" class="contact-form">
-                    <div class="form-group row">
-                        <input type="text" name="firstName" placeholder="First Name" required>
-                        <input type="text" name="lastName" placeholder="Last Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" rows="4" placeholder="Your Message Here" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+            <div class="contact-wrapper">
+                
+                <!-- Left Side: Social Media -->
+                <div class="social-media-card">
+                    <h2>SOCIAL MEDIA</h2>
+                    <ul class="social-links">
+                        <li><a href="https://www.facebook.com/yowie.lheilhei"><i class="fa-brands fa-facebook"></i> @yowie.lheilhei</a></li>
+                        <li><a href="https://www.instagram.com/yowie.lheilhei/"><i class="fa-brands fa-instagram"></i> @yowie.lheilhei</a></li>
+                        <li><a href="#"><i class="fa-brands fa-tiktok"></i> @yowie.lheilhei</a></li>
+                        <li><a href="#"><i class="fa-brands fa-discord"></i> @yowie.lheilhei</a></li>
+                        <li><a href="#"><i class="fa-brands fa-soundcloud"></i> @yowiemabu</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Right Side: Contact Form -->
+                <div class="contact-form-card">
+                    <h2>Contact me</h2>
+                    <form action="#" method="POST" class="contact-form">
+                        
+                        <p class="field-label">Name (required)</p>
+                        <div class="form-group row">
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                            <input type="text" name="lastName" placeholder="Last Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" name="service" placeholder="Service">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email (required)" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea name="message" rows="1" placeholder="Project description" required></textarea>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <button type="submit" class="submit-btn">Submit</button>
+                            <span class="phone-number">(+48) 994 650 5336</span>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </section>
     </main>
-<script>
-    const images = document.querySelectorAll('.gallery-carousel img');
-    
-    const projectTitle = document.querySelector('.project-item.full-width h3');
-    const projectDesc = document.querySelector('.project-item.full-width p');
-    
-    let positions = ['pos-1', 'pos-2', 'pos-3', 'pos-4', 'pos-5'];
-
-    const projectDetails = [
-        {
-            title: "F L O W E R S",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magni sequi numquam vero non incididunt tempora aute neque cillum mollit sunt cupidatat aperiam sint incididunt eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magni sequi numquam vero non incididunt tempora aute neque cillum mollit sunt cupidatat aperiam sint incididunt eiusmod"
-        },
-        {
-            title: "R I Z A L",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magni sequi numquam vero non incididunt tempora aute neque cillum mollit sunt cupidatat aperiam sint incididunt eiusmod"
-        },
-        {
-            title: "M E D Y O   S H O R T   F I L M",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magni sequi numquam vero non incididunt tempora aute neque cillum mollit sunt cupidatat aperiam sint incididunt eiusmod"
-        },
-        {
-            title: "P L A T E S",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magni sequi numquam vero non incididunt tempora aute neque cillum mollit sunt cupidatat aperiam sint incididunt eiusmod"
-        },
-        {
-            title: "H A R A N A",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magni sequi numquam vero non incididunt tempora aute neque cillum mollit sunt cupidatat aperiam sint incididunt eiusmod"
-        }
-    ];
-
-    function renderImages() {
-        images.forEach((img, index) => {
-            img.classList.remove('pos-1', 'pos-2', 'pos-3', 'pos-4', 'pos-5');
-            img.classList.add(positions[index]);
-        });
-    }
-
-    renderImages();
-
-    images.forEach((img, index) => {
-        img.addEventListener('click', () => {
-            let currentPos = positions[index];
-
-            if (currentPos === 'pos-3') return; // Do nothing if clicking the center image
-
-            // Carousel Rotation Logic
-            if (currentPos === 'pos-4') {
-                positions.unshift(positions.pop());
-            } else if (currentPos === 'pos-5') {
-                positions.unshift(positions.pop());
-                positions.unshift(positions.pop());
-            } else if (currentPos === 'pos-2') {
-                positions.push(positions.shift());
-            } else if (currentPos === 'pos-1') {
-                positions.push(positions.shift());
-                positions.push(positions.shift());
-            }
-            renderImages();
-
-            // --- TEXT SWAP & FADE LOGIC ---
-            
-            // 1. Find the index of the image that is currently in the center (pos-3)
-            const centerIndex = positions.indexOf('pos-3');
-
-            // 2. Add the fade-out class so the text disappears
-            projectTitle.classList.add('fade-out');
-            projectDesc.classList.add('fade-out');
-
-            // 3. Wait 300ms (matching the CSS transition), swap the text, then fade back in
-            setTimeout(() => {
-                projectTitle.textContent = projectDetails[centerIndex].title;
-                projectDesc.textContent = projectDetails[centerIndex].desc;
-
-                projectTitle.classList.remove('fade-out');
-                projectDesc.classList.remove('fade-out');
-            }, 300); 
-        });
-    });
-
-    // --- Modal Pop-up Logic ---
-    const modal = document.getElementById('artistModal');
-    const badge = document.getElementById('artistBadge');
-    const closeBtn = document.querySelector('.close-modal');
-
-        // Open modal when badge is clicked
-        badge.addEventListener('click', () => {
-            modal.classList.add('show');
-        });
-
-        // Close modal when the "X" is clicked
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('show');
-        });
-
-        // Close modal when clicking outside the box (on the dark background)
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.classList.remove('show');
-            }
-        });
-</script>
 <div id="artistModal" class="modal-overlay">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
@@ -288,5 +242,8 @@
         <p>I specialize in video editing, graphic design, and audio-visual production. I love blending technical architecture with creative visual design to create engaging digital experiences.</p>
     </div>
 </div>
+    <script src="index.js"></script>
+</body>
+</html>
 </body>
 </html>

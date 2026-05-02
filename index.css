@@ -14,10 +14,10 @@ body {
 }
 
 .container {
-    max-width: 1100px;
+    /* Increase this number (e.g., from 1200px to 1400px) */
+    max-width: 1300px; 
     margin: 0 auto;
-    padding: 50px 20px;
-    gap: 20px;  
+    padding: 80px 20px;
 }
 
 img {
@@ -121,7 +121,20 @@ img {
 
 .about-content {
     max-width: 600px;
-    margin: 0 auto;
+    
+    /* ADD THESE 3 LINES */
+    max-height: 350px; /* Adjust this to match your image height */
+    overflow-y: auto;  /* Adds a vertical scrollbar if text overflows */
+    padding-right: 15px; /* Adds breathing room so the text doesn't touch the scrollbar */
+}
+
+/* Optional: Style the scrollbar so it matches your theme */
+.about-content::-webkit-scrollbar {
+    width: 6px;
+}
+.about-content::-webkit-scrollbar-thumb {
+    background: #8e44ad; 
+    border-radius: 10px;
 }
 
 .about-content h2 {
@@ -143,6 +156,23 @@ img {
     font-size: 1.3rem;
     text-align: justify;
 }   
+
+/* --- Scroll Reveal Animation --- */
+.hidden-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.show-scroll {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Make the text fade in slightly after the image */
+.about-content.hidden-scroll {
+    transition-delay: 0.2s;
+}
 
 .skills-section h2 {
     text-align: left;
@@ -227,7 +257,7 @@ img {
 .projects-section h2 {
     letter-spacing: 0.5em; 
     font-weight: 500;
-    font-size: 40px;
+    font-size: 50px;
     text-align: right;
     margin-bottom: 150px;
 }
@@ -237,6 +267,47 @@ img {
     font-weight: 500;
 }
 
+/* --- Carousel Navigation Buttons --- */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #b892d1;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #4a1d6e; /* Your theme purple */
+    cursor: pointer;
+    z-index: 10; /* Ensures buttons are clickable above the images */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: #8e44ad; /* Highlight purple */
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.1); /* Slight pop effect */
+}
+
+/* Position them wide outside the center image */
+.prev-btn {
+    left: -120px; 
+}
+
+.next-btn {
+    right: -120px;
+}
+
+/* On smaller screens, pull the buttons closer so they don't get cut off */
+@media (max-width: 992px) {
+    .prev-btn { left: -30px; }
+    .next-btn { right: -30px; }
+}
 /* Set up the carousel container */
 .gallery-carousel {
     position: relative;
@@ -325,56 +396,103 @@ img {
 }
 
 /* Photography Grid */
+
+
 .section-subtitle {
     text-align: center;
     letter-spacing: 6px;
     margin-bottom: 40px;
     color: #8e44ad;
-    font-weight: 600;
+    font-weight: 400;
     text-transform: uppercase;
+    
+    /* ADD THIS LINE */
+    font-size: 3vw; 
 }
 
+.section-subtitle span {
+    color: #333;
+}
+/* --- Photography Grid Styling --- */
 .photography-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 11px; /* Adjust this to match the space between your photos */
 }
 
 .photography-grid img {
     width: 100%;
-    height: 200px;
+    /* Change this from auto to a specific height */
+    height: 350px; /* Try 300px, 350px, or 400px to see what looks best */
     object-fit: cover;
+    
+    box-shadow: none !important; 
+    border-radius: 11px; 
+    background: transparent;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+/* Keep a clean hover effect without adding the shadow back */
+.photography-grid img:hover {
+    transform: translateY(-5px);
 }
 /* --- Clothing Designs Section --- */
+/* --- Master Spacing for the Clothing Section --- */
+
 .clothing-designs {
     display: flex;
     flex-direction: column;
-    margin: 20px 0;
+    /* 1. VERTICAL SPACING: Distance between the 3 different shirts */
+    gap: 120px; 
+    /* 2. PADDING: Breathing room inside the whole section */
+    padding: 60px 20px; 
 }
-/* Standard Row: Image Left, Text Right */
+
+/* Image on Left, Text on Right */
 .project-item.flex-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0px; 
+    /* 3. HORIZONTAL SPACING: Distance between the Image and the Text */
+    gap: 60px; 
 }
-/* Reverse Row: Image Right, Text Left */
+
+/* Image on Right, Text on Left */
 .project-item.flex-row-reverse {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    justify-content: center; /* <--- Changed from 'left' to 'center' to keep it uniform */
-    gap: 0px; /* <--- Explicitly removes the gap */
+    justify-content: center;
+    /* HORIZONTAL SPACING: Keep this exactly the same as .flex-row */
+    gap: 60px; 
 }
 
+/* --- Mobile Spacing Fixes --- */
+@media (max-width: 992px) {
+    .clothing-designs {
+        gap: 80px; /* Shrink vertical gap between projects on mobile */
+        padding: 40px 15px; 
+    }
+    
+    .project-item.flex-row,
+    .project-item.flex-row-reverse {
+        flex-direction: column; /* Stacks image on top of text */
+        gap: 30px; /* Shrink the space between the image and text when stacked */
+    }
+}
 
 .clothing-designs img {
-    width: 60%; 
-    max-width: 700px;
+    width: 55%; 
+    max-width: 650px;
     object-fit: fill;
     border: none;
     transition: transform 0.3s ease;
+    padding: 0; /* Removes any default padding */
+    margin: 20px 0; /* Adds vertical spacing between the image and text */
+    gap: 40px;
+    
 }
+
 
 
 /* Keep the hover effect so they still lift up when hovered */
@@ -383,29 +501,24 @@ img {
 }
 
 /* Text Container Styling */
+.clothing-designs .project-item:nth-child(1) .project-text h3 {
+    text-align: right;
+}
+
 .project-text {
-    width: 100%;
-    max-width: 1000px;
+    width: 80%;
+    max-width: 1300px;
     text-align: left; /* Keeps text aligned nicely next to the image */
 }
 
 .project-yunky {
     width: 100%;
     LETTER-SPACING: 0.2em;
-    max-width: 1000px;
+    max-width: 1300px;
     text-align: justify; /* Keeps text aligned nicely next to the image */
 }
 
 .project-yunky h3 {
-    font-size: 2.8rem;
-    letter-spacing: normal; /* Wide spacing matching Figma */
-    line-height: 1.4;
-    margin-bottom: 25px;
-    font-weight: 500;
-}
-
-
-.project-text h3 {
     font-size: 2.8rem;
     letter-spacing: normal; /* Wide spacing matching Figma */
     line-height: 1.4;
@@ -433,6 +546,40 @@ img {
     line-height: 1.8;
     text-align: justify;
 }
+/* --- Poster Grid Styling --- */
+.poster-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Aligns the text cleanly under the image */
+}
+
+.poster-card img {
+    width: 150%;
+    border-radius: 5px; /* Optional: gives the posters soft corners */
+    margin-bottom: 10px; /* Space between the image and the title */
+    transition: transform 0.3s ease;
+}
+
+.poster-card img:hover {
+    transform: translateY(-8px);
+}
+
+.poster-info h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: #333; /* Dark text for readability */
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.poster-info p {
+    font-size: 0.95rem;
+    color: #666; /* Softer gray for the paragraph */
+    line-height: 1.2;
+    text-align: justify;
+
+}
 
 /* --- Responsive Fix for Mobile & Tablets --- */
 /* This ensures the zig-zag layout stacks neatly on smaller screens */
@@ -456,112 +603,278 @@ img {
 }
 
 /* --- Contact & Social Section --- */
+/* =========================================
+   CONTACT SECTION (Overlapping Cards)
+   ========================================= */
 .contact-section {
-    display: flex;
-    gap: 40px;
-    align-items: stretch;
-    justify-content: center;
+    padding: 100px 20px;
 }
 
-.social-media {
-    flex: 1;
-    background: linear-gradient(180deg, #f0f0f0 0%, #dcdcdc 100%);
-    padding: 50px;
-    border-radius: 15px;
-    text-align: left;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* 10px down */
-}
-
-.social-media h2 {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
-}
-
-.social-media ul {
-    list-style: none;
-}
-
-.social-media li {
-    margin-bottom: 20px;
+.contact-wrapper {
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
+    max-width: 1050px;
+    margin: 0 auto;
+    position: relative;
 }
 
-.social-media a {
-    text-decoration: none;
-    color: #444;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: color 0.3s;
+/* --- Left Card: Social Media --- */
+.social-media-card {
+    background: linear-gradient(135deg, #e6e6e6 0%, #ffffff 100%);
+    border-radius: 16px;
+    /* Extra padding on the right so text doesn't hide behind the purple box */
+    padding: 60px 100px 60px 50px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    flex: 1;
+    max-width: 450px;
+    z-index: 1;
 }
 
-.social-media a:hover {
-    color: #8e44ad;
+.social-media-card h2 {
+    font-size: 2.2rem;
+    color: #000;
+    margin-bottom: 40px;
+    font-weight: 800;
 }
 
-.contact-form-container {
-    flex: 2;
-    background: #4a1d6e; /* Matching deep purple */
-    color: white;
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(74, 29, 110, 0.3); /* 10px down */    
+.social-links {
+    list-style: none;
+    padding: 0;
 }
 
-.contact-form-container h2 {
-    margin-bottom: 30px;
-    font-size: 2rem;
-}
-
-.form-group {
+.social-links li {
     margin-bottom: 25px;
 }
 
-.form-group.row {
+.social-links a {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s, transform 0.3s;
 }
 
-input, textarea {
+.social-links a i {
+    font-size: 1.5rem;
+    width: 35px; /* Ensures all icons take up the same space */
+    margin-right: 15px;
+}
+
+.social-links a:hover {
+    color: #8e44ad;
+    transform: translateX(5px);
+}
+
+/* --- Right Card: Contact Form --- */
+.contact-form-card {
+    background: linear-gradient(135deg, #3d0046 0%, #5e0066 100%);
+    border-radius: 16px;
+    padding: 60px 50px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    flex: 1.2;
+    max-width: 600px;
+    
+    /* THIS IS THE MAGIC THAT CREATES THE OVERLAP */
+    margin-left: -50px; 
+    z-index: 2;
+}
+
+.contact-form-card h2 {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    color: #fff;
+    font-weight: 800;
+}
+
+.field-label {
+    font-size: 0.85rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 25px;
+}
+
+.contact-form .form-group.row {
+    display: flex;
+    gap: 30px;
+}
+
+/* Invisible inputs with just a bottom border */
+.contact-form input,
+.contact-form textarea {
     width: 100%;
-    padding: 15px;
-    border: none;
-    border-bottom: 2px solid rgba(255,255,255,0.2);
     background: transparent;
-    color: white;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 0;
+    color: #fff;
     font-size: 1rem;
     outline: none;
-    transition: border-bottom-color 0.3s;
+    transition: border-color 0.3s;
 }
 
-input:focus, textarea:focus {
-    border-bottom-color: #d8c4e8;
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
 }
 
-input::placeholder, textarea::placeholder {
-    color: rgba(255,255,255,0.6);
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-bottom-color: #d800ff;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Aligns button and phone number on same line */
+    margin-top: 40px;
 }
 
 .submit-btn {
-    background: #cbaee0;
-    color: #2b0c4a;
+    background: #c300ff;
+    color: #fff;
     border: none;
-    padding: 15px 40px;
-    border-radius: 30px;
+    padding: 12px 35px;
+    border-radius: 30px; /* Gives it that pill shape */
+    font-weight: bold;
     cursor: pointer;
-    font-weight: 700;
     font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background 0.3s, transform 0.2s;
-    margin-top: 10px;
+    transition: transform 0.2s, background 0.3s;
 }
 
 .submit-btn:hover {
-    background: #ffffff;
+    background: #e44dff;
     transform: translateY(-2px);
+}
+
+.phone-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* --- Mobile Fixes for the Overlap --- */
+@media (max-width: 992px) {
+    .contact-wrapper {
+        flex-direction: column;
+    }
+    
+    .social-media-card {
+        padding: 40px;
+        max-width: 100%;
+        /* Make the bottom flat so the purple box can sit perfectly on top */
+        border-radius: 16px 16px 0 0; 
+    }
+    
+    .contact-form-card {
+        /* Remove horizontal overlap, add vertical overlap */
+        margin-left: 0;
+        margin-top: -30px; 
+        max-width: 100%;
+        border-radius: 16px;
+    }
+    
+    .contact-form .form-group.row {
+        flex-direction: column;
+        gap: 25px;
+    }
+}
+
+/* =========================================
+   SIDE SCROLL WHEEL NAVIGATION
+   ========================================= */
+.side-scroll-nav {
+    position: fixed;
+    top: 50%;
+    left: -150px; 
+    /* We add a translateX(-20px) to make it slide slightly left when hiding */
+    transform: translateY(-50%) translateX(-20px);
+    z-index: 500;
+    
+    /* NEW: Hide it by default */
+    opacity: 0; 
+    pointer-events: none; /* Prevents clicking on it while invisible */
+    
+    /* Smooth fade and slide animation */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* NEW: This class will be added by JavaScript when scrolling */
+.side-scroll-nav.is-visible {
+    opacity: 1;
+    pointer-events: auto; /* Makes it clickable again */
+    transform: translateY(-50%) translateX(0); /* Slides it into its proper place */
+}
+
+.scroll-wheel {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    /* This smooth transition makes the wheel spin nicely */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+
+.wheel-circle {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    border-radius: 50%;
+    /* The purple gradient matching your Figma */
+    background: radial-gradient(circle at center, #d870ff 0%, #a200cc 80%);
+    box-shadow: 0 0 30px rgba(162, 0, 204, 0.4);
+}
+
+.wheel-labels {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    list-style: none;
+    margin: 0; padding: 0;
+}
+
+.wheel-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Pushes text 170px away from the center (just outside the 150px radius circle) */
+    transform-origin: left center;
+    margin-top: -12px; 
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #b3b3b3;
+    cursor: pointer;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+/* Hardcoded angles to fan them out like spokes */
+.wheel-label[data-target="home"] { transform: rotate(-60deg) translateX(170px); }
+.wheel-label[data-target="about"] { transform: rotate(-30deg) translateX(170px); }
+.wheel-label[data-target="skills"] { transform: rotate(0deg) translateX(170px); }
+.wheel-label[data-target="projects"] { transform: rotate(30deg) translateX(170px); }
+.wheel-label[data-target="contact"] { transform: rotate(60deg) translateX(170px); }
+
+/* The style for whichever section is currently active */
+.wheel-label.active {
+    color: #333; /* Dark color like in Figma */
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Hide the side wheel entirely on tablets and phones */
+@media (max-width: 1200px) {
+    .side-scroll-nav {
+        display: none;
+    }
 }
 
 /* --- Responsive Design --- */
